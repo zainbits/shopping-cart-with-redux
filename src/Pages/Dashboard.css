@@ -1,0 +1,5 @@
+.block__dashboard {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+}
