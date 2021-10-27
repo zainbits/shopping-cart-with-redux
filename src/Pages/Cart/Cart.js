@@ -1,5 +1,6 @@
 import React, {useState, useEffect} from "react"
-import CartItem from "../components/CartItem/CartItem"
+import CartItem from "../../components/CartItem/CartItem"
+import "./Cart.css"
 
 import { connect } from "react-redux"
 
@@ -18,7 +19,7 @@ const Cart = ({cart}) => {
             setTotalItems(items)
             setTotalPrice(price)
         });
-    }, [cart, totalPrice, setTotalPrice, totalItems, setTotalItems])
+    }, [cart, totalPrice, totalItems])
 
     return (
         <div>

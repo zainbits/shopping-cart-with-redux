@@ -1,5 +1,5 @@
 import React from 'react'
-import ItemCard from '../components/Card/ItemCard'
+import ItemCard from '../../components/Card/ItemCard'
 import { connect } from "react-redux"
 import "./Dashboard.css"
 const Dashboard = ({ items }) => {

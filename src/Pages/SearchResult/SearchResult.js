@@ -1,6 +1,7 @@
 import React from 'react'
-import ItemCard from '../components/Card/ItemCard'
+import ItemCard from '../../components/Card/ItemCard'
 import { connect } from "react-redux"
+import "./SearchResult.css"
 
 const SearchResult = ({ items }) => {
     return (

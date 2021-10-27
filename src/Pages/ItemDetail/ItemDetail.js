@@ -1,6 +1,6 @@
 import React from "react"
 import { connect } from "react-redux"
-import { addToCart } from "../Redux/Shopping/shopping-actions"
+import { addToCart } from "../../Redux/Shopping/shopping-actions"
 import "./ItemDetail.css"
 
 const ItemDetail = ({ currentItem, addToCart }) => {

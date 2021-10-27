@@ -2,10 +2,10 @@ import "./App.css";
 import React from "react"
 import Navbar from "./components/Navbar/Navbar"
 import {Switch, Route} from "react-router-dom"
-import Dashboard from "./Pages/Dashboard"
-import Cart from "./Pages/Cart"
-import ItemDetail from "./Pages/ItemDetail"
-import SearchResult from "./Pages/SearchResult";
+import Dashboard from "./Pages/Dashboard/Dashboard"
+import Cart from "./Pages/Cart/Cart"
+import ItemDetail from "./Pages/ItemDetail/ItemDetail"
+import SearchResult from "./Pages/SearchResult/SearchResult";
 import { createStore } from "redux"
 import { rootReducer } from "./Redux/rootReducer";
 import { Provider } from "react-redux"
