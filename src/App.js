@@ -1,18 +1,19 @@
 import "./App.css";
 import React from "react"
 import Navbar from "./components/Navbar/Navbar"
-import {Switch, Route} from "react-router-dom"
+import {Switch, Route, Redirect} from "react-router-dom"
 import Dashboard from "./Pages/Dashboard/Dashboard"
 import Cart from "./Pages/Cart/Cart"
 import ItemDetail from "./Pages/ItemDetail/ItemDetail"
 import SearchResult from "./Pages/SearchResult/SearchResult";
-import { createStore } from "redux"
+import { createStore, applyMiddleware } from "redux"
 import { rootReducer } from "./Redux/rootReducer";
+import thunk from "redux-thunk"
 import { Provider } from "react-redux"
-import { composeWithDevTools } from "redux-devtools-extension"
+// import { composeWithDevTools } from "redux-devtools-extension"
 
 
-const store = createStore(rootReducer, composeWithDevTools())
+const store = createStore(rootReducer, applyMiddleware(thunk))
 
 function App() {
   return (
@@ -24,6 +25,7 @@ function App() {
           <Route exact path="/cart" component={Cart} />
           <Route exact path="/item/:id" component={ItemDetail} />
           <Route exact path="/SearchResult" component={SearchResult} />
+          <Redirect exact to="/" />
         </Switch>
       </div>
     </Provider>

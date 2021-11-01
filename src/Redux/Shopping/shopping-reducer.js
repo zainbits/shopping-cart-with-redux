@@ -1,15 +1,21 @@
 import * as actionTypes from "./shopping-types";
-import data from '../../json/items.json'
+// import data from '../../json/items.json'
 
 const initialState = {
-  items: data.items, // [{id, title, desc, price, img},...]
+  items: [], // [{id, title, desc, price, img},...]
   cart: [], // [{id, title, desc, price, img, qty},...]
   currentItem: null,
   searchItems: [],
+  loading: false
 };
 
 const shopReducer = (state = initialState, action) => {
   switch (action.type) {
+    case actionTypes.SET_ITEMS:
+      return {
+        ...state,
+        items: action.payload
+      }
     case actionTypes.ADD_TO_CART:
       const item = state.items.find((it) => it.id === action.payload.id);
       const inCart = state.cart.find((it) =>

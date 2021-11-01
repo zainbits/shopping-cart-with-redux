@@ -1,4 +1,21 @@
 import * as actionTypes from './shopping-types'
+import API from "../../Api/backend"
+
+export const fetchItems = () => dispatch => {
+    return API.get("/get/all")
+    .then(res => {
+        const result = res.data.Items
+        dispatch(setItems(result))
+        return result
+        
+    })
+    .catch(err => console.error(err))
+}
+
+export const setItems = items => ({
+    type: actionTypes.SET_ITEMS,
+    payload: items
+})
 
 export const addToCart = itemID => {
     return {

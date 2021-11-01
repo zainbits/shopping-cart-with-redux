@@ -2,7 +2,14 @@ import React from 'react'
 import ItemCard from '../../components/Card/ItemCard'
 import { connect } from "react-redux"
 import "./Dashboard.css"
-const Dashboard = ({ items }) => {
+import { fetchItems } from '../../Redux/Shopping/shopping-actions'
+
+const Dashboard = ({ items, fetch }) => {
+
+    React.useEffect(() => {
+        fetch()
+    },[])
+
     return (
         <div className="block__dashboard">
             {items.map(item=><ItemCard key={item.id} itemData={item}/>)}
@@ -14,4 +21,8 @@ const mapStateToProps = state => ({
     items: state.shop.items
 })
 
-export default connect(mapStateToProps)(Dashboard)
+const mapDispatchToProps = dispatch => ({
+    fetch: () => dispatch(fetchItems())
+})
+
+export default connect(mapStateToProps, mapDispatchToProps)(Dashboard)
