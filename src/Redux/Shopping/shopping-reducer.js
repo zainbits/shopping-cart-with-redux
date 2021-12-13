@@ -1,57 +1,49 @@
-import * as actionTypes from "./shopping-types";
+import { createSlice } from "@reduxjs/toolkit"
 // import data from '../../json/items.json'
 
 const initialState = {
-  items: [], // [{id, title, desc, price, img},...]
-  cart: [], // [{id, title, desc, price, img, qty},...]
+  items: [], // [{id, title, desc, price, image},...]
+  cart: [], // [{id, title, desc, price, image, qty},...]
   currentItem: null,
   searchItems: [],
   loading: false
 };
 
-const shopReducer = (state = initialState, action) => {
-  switch (action.type) {
-    case actionTypes.SET_ITEMS:
-      return {
-        ...state,
-        items: action.payload
-      }
-    case actionTypes.ADD_TO_CART:
-      const item = state.items.find((it) => it.id === action.payload.id);
-      const inCart = state.cart.find((it) =>
-        it.id === action.payload.id ? true : false
-      );
-      return {
-        ...state,
-        cart: inCart
-          ? state.cart.map(it =>
-              it.id === action.payload.id ? { ...it, qty: it.qty + 1 } : it
-            )
-          : [...state.cart, { ...item, qty: 1 }],
-      };
-    case actionTypes.REMOVE_FROM_CART:
-      return {
-          ...state,
-          cart: state.cart.filter(it => it.id !== action.payload.id),
-      };
-    case actionTypes.ADJUST_QTY:
-      return {
-          ...state,
-          cart: state.cart.map(it => it.id === action.payload.id ? {...it, qty: +action.payload.qty} : it)
-      };
-    case actionTypes.LOAD_CURRENT_ITEM:
-      return {
-          ...state,
-          currentItem: action.payload
-      };
-    case actionTypes.SEARCH_ITEMS:
-      return {
-        ...state,
-        searchItems: state.items.filter(item => item.title.includes(action.payload.title))
-      }
-    default:
-      return state;
+const shopSlice = createSlice({
+  name: 'shop',
+  initialState,
+  reducers: {
+    setItems(state, action) {
+      state.items = action.payload
+    },
+    addToCart(state, action) {
+      const item = action.payload
+      const inCart = state.cart.find( it => it.id === item.id)
+      inCart ? inCart.qty = inCart.qty + 1 : state.cart.push({
+          id: item.id,
+          title: item.title,
+          description: item.description,
+          price: item.price,
+          image: item.image,
+          qty: 1
+        })
+      
+    },
+    removeFromCart(state, action) {
+      state.cart = state.cart.filter(it => it.id !== action.payload)
+    },
+    adjustQty(state, action) {
+      const item = state.cart.find(it => it.id === action.payload.id)
+      item.qty = +action.payload.value
+    },
+    loadCurrentItem(state, action) {
+      state.currentItem = action.payload
+    },
+    searchItems(state, action) {
+      state.searchItems = state.items.filter(item => item.title.toLowerCase().includes(action.payload.toLowerCase()))
+    },
   }
-};
+})
 
-export default shopReducer;
+export const shopActions = shopSlice.actions
+export default shopSlice

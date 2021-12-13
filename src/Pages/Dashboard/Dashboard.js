@@ -8,7 +8,7 @@ const Dashboard = ({ items, fetch }) => {
 
     React.useEffect(() => {
         fetch()
-    },[])
+    },[fetch])
 
     return (
         <div className="block__dashboard">

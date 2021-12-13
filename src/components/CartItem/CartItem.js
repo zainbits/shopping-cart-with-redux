@@ -1,14 +1,10 @@
 import React, { useState } from "react";
 import { connect } from "react-redux";
-import {
-  removeFromCart,
-  adjustQty,
-} from "../../Redux/Shopping/shopping-actions";
 import "./CartItem.css";
+import { shopActions } from "../../Redux/Shopping/shopping-reducer"
 
 const CartItem = ({ data, removeFromCart, adjustQty }) => {
   const [input, setInput] = useState(data.qty);
-
   const changeQuantity = (e) => {
     setInput(e.target.value);
     adjustQty(data.id, e.target.value);
@@ -41,8 +37,8 @@ const CartItem = ({ data, removeFromCart, adjustQty }) => {
 };
 
 const mapDispatchToProps = (dispatch) => ({
-  removeFromCart: (id) => dispatch(removeFromCart(id)),
-  adjustQty: (id, value) => dispatch(adjustQty(id, value)),
+  removeFromCart: (id) => dispatch(shopActions.removeFromCart(id)),
+  adjustQty: (id, value) => dispatch(shopActions.adjustQty({id, value})),
 });
 
 export default connect(null, mapDispatchToProps)(CartItem);

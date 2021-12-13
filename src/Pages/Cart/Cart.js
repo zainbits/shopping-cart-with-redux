@@ -19,6 +19,11 @@ const Cart = ({cart}) => {
             setTotalItems(items)
             setTotalPrice(price)
         });
+
+        if (cart.length === 0) {
+            setTotalItems(0)
+            setTotalPrice(0)
+        }
     }, [cart, totalPrice, totalItems])
 
     return (

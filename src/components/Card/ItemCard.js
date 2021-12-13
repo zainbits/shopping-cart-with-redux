@@ -2,7 +2,7 @@ import React from "react"
 import { Link } from "react-router-dom"
 import './ItemCard.css'
 import { connect } from "react-redux"
-import { addToCart, loadCurrentItem } from "../../Redux/Shopping/shopping-actions"
+import { shopActions } from "../../Redux/Shopping/shopping-reducer"
 
 const ItemCard= ({ itemData, addToCart, loadCurrentItem }) => {
     return (
@@ -19,7 +19,7 @@ const ItemCard= ({ itemData, addToCart, loadCurrentItem }) => {
                 <Link to={`item/${itemData.id}`}>
                     <button onClick={()=>{loadCurrentItem(itemData)}}>View Item</button>
                 </Link>
-                <button onClick={()=>addToCart(itemData.id)}>Add To Cart</button>
+                <button onClick={()=>addToCart(itemData)}>Add To Cart</button>
             </div>
         </div>
     )
@@ -27,8 +27,8 @@ const ItemCard= ({ itemData, addToCart, loadCurrentItem }) => {
 
 const mapDispatchToProps = dispatch => (
     {
-        addToCart: id => dispatch(addToCart(id)),
-        loadCurrentItem: item => dispatch(loadCurrentItem(item)) 
+        addToCart: id => dispatch(shopActions.addToCart(id)),
+        loadCurrentItem: item => dispatch(shopActions.loadCurrentItem(item)) 
     }
 )
 

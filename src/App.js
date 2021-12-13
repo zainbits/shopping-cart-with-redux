@@ -1,19 +1,13 @@
-import "./App.css";
+import "./App.css"
 import React from "react"
 import Navbar from "./components/Navbar/Navbar"
 import {Switch, Route, Redirect} from "react-router-dom"
 import Dashboard from "./Pages/Dashboard/Dashboard"
 import Cart from "./Pages/Cart/Cart"
 import ItemDetail from "./Pages/ItemDetail/ItemDetail"
-import SearchResult from "./Pages/SearchResult/SearchResult";
-import { createStore, applyMiddleware } from "redux"
-import { rootReducer } from "./Redux/rootReducer";
-import thunk from "redux-thunk"
+import SearchResult from "./Pages/SearchResult/SearchResult"
+import store from "./Redux/rootReducer"
 import { Provider } from "react-redux"
-// import { composeWithDevTools } from "redux-devtools-extension"
-
-
-const store = createStore(rootReducer, applyMiddleware(thunk))
 
 function App() {
   return (

@@ -1,8 +1,8 @@
 import React, { useState, useEffect } from "react";
 import { Link } from "react-router-dom";
 import "./Navbar.css";
-import { searchItems } from "../../Redux/Shopping/shopping-actions";
 import { connect } from "react-redux";
+import { shopActions } from "../../Redux/Shopping/shopping-reducer";
 
 const Navbar = ({ cart, search, searchList }) => {
   const [cartCount, setCartCount] = useState(0);
@@ -17,7 +17,6 @@ const Navbar = ({ cart, search, searchList }) => {
   }, [cart, cartCount]);
 
   const searchHandler = () => {
-    console.log(searchText);
     search(searchText);
   };
 
@@ -41,7 +40,7 @@ const Navbar = ({ cart, search, searchList }) => {
             <h1>Cart</h1>
             <img
               className="cart__image"
-              src="https://image.flaticon.com/icons/svg/102/102276.svg"
+              src="https://pixabay.com/get/ge18737727b0422237370caf7835f7b4fa09a0bd089303d3cf0603fcb9b2f013777bb69e2cbaab8c15a997b2643b91421c0e55791137ea44e28fdbd198b5cbf7a44193a802b8ed977cb38debbbc21c484_640.png"
               alt="shopping cart"
             />
             <div className="cart__counter">{cartCount}</div>
@@ -53,7 +52,7 @@ const Navbar = ({ cart, search, searchList }) => {
 };
 
 const mapDispatchToProps = (dispatch) => ({
-  search: (title) => dispatch(searchItems(title)),
+  search: (title) => dispatch(shopActions.searchItems(title)),
 });
 
 const mapStateToProps = (state) => ({

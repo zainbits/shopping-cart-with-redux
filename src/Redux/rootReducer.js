@@ -1,5 +1,8 @@
-import { combineReducers } from "redux"
-import shopReducer from "./Shopping/shopping-reducer"
-export const rootReducer = combineReducers({
-    shop: shopReducer
+import { configureStore } from '@reduxjs/toolkit'
+import shopSlice from "./Shopping/shopping-reducer"
+
+const store = configureStore({
+    reducer: { shop: shopSlice.reducer },
 })
+
+export default store
